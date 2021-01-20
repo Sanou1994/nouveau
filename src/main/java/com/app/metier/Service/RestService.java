@@ -191,6 +191,7 @@ public class RestService  implements IService {
     			soldeDebuterJourneeRepository
                         .findById(userId);
     	soldeDebuterJourneeRepository.delete(user);
+    	maJourneeRepository.deleteById(maJourneeRepository.findByDateAndIdUAndStatus(user.getDate(),user.getIdU(),user.getStatus()).get(0).getId());
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
