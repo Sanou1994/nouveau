@@ -27,8 +27,6 @@ import com.app.metier.entities.history;
 @Service
 public class RestService  implements IService {
 
-	private  Date  aujourdhui = new Date();
-	private SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
     @Autowired
     private DaoUser userRepository;
     @Autowired
@@ -48,6 +46,8 @@ public class RestService  implements IService {
     }
   
 	public void jour() {
+		Date  aujourdhui = new Date();
+		SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
     	int tester = 0;
     	Dates user = new Dates(formater.format(aujourdhui));
     	List<Dates> listes =getAllDates();
@@ -105,6 +105,8 @@ public class RestService  implements IService {
     }
    
     public List<SoldeDebuterJournee>getSoldeDebuterJournees( int userId) {
+    	Date  aujourdhui = new Date();
+    	SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
         return soldeDebuterJourneeRepository.findByDateAndIdUAndStatus(formater.format(aujourdhui), userId,1);
     }
 
@@ -211,7 +213,8 @@ public class RestService  implements IService {
    
     public void createTransactions( Transaction user) {
     	int id_user= user.getIdU();
-    	
+    	Date  aujourdhui = new Date();
+    	SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
     	SoldeDebuterJournee soldes =soldeDebuterJourneeRepository.findByDateAndIdUAndStatus(formater.format(aujourdhui),id_user,1).get(0);
     	
     	if(user.getSens().equals("encaissement")) {
@@ -331,6 +334,8 @@ public class RestService  implements IService {
     
   
     public Transaction updateTransactions( int userId,  Transaction ad) {
+    	Date  aujourdhui = new Date();
+    	SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
     	Transaction admin =
     			transactionRepository
                         .findById(userId);
@@ -556,6 +561,8 @@ public class RestService  implements IService {
     }
     
     public Map<String, Boolean> deleteTransactions( int userId)  {
+    	Date  aujourdhui = new Date();
+    	SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
     	Transaction user =
     			transactionRepository
                         .findById(userId);
@@ -691,7 +698,8 @@ public class RestService  implements IService {
      }
    
     public double cloturer(  int id, double con){	
-    	
+    	Date  aujourdhui = new Date();
+    	SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
     	SoldeDebuterJournee solde =soldeDebuterJourneeRepository.findByDateAndIdUAndStatus(formater.format(aujourdhui),id,1).get(0);
     	Majournee solde1 =maJourneeRepository.findByDateAndIdUAndStatus(formater.format(aujourdhui),id,1).get(0);
         solde.setCloturer(con);
@@ -766,6 +774,8 @@ public class RestService  implements IService {
 
     
     public double sommeInitiale( int id){
+    	Date  aujourdhui = new Date();
+    	SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
     	Majournee solde =maJourneeRepository.findByDateAndIdUAndStatus(formater.format(aujourdhui),id,1).get(0);
     	return (solde!=null)? solde.getCaisse() : 0;
      }
@@ -821,22 +831,24 @@ public class RestService  implements IService {
     }
    
     public List<Transaction>listeTansactionParCassier( int id_caissier){
-    	
+    	Date  aujourdhui = new Date();
+    	SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
     	return transactionRepository.findByIdUAndDateAndStatus(id_caissier, formater.format(aujourdhui),1);
     }
     
     public List<Transaction>listeHistorique( history user){
-    	
     	return transactionRepository.findByIdUAndDateBetween(user.getId(),user.getDate(),user.getDate1());
     }
 
     public List<Transaction>listeRehercherParOperateur( int id_caissier,String operation){
-    	
+    	Date  aujourdhui = new Date();
+    	SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
     	return transactionRepository.findByOperateurAndDateAndIdUAndStatus(operation,formater.format(aujourdhui), id_caissier,1);
     }
    
     public List<Transaction>listeRehercherParOperation( int id_caissier, String operation){
-    	
+    	Date  aujourdhui = new Date();
+    	SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
     	return transactionRepository.findByDateAndIdUAndSensAndStatus(formater.format(aujourdhui), id_caissier,operation,1);
     }
     public void actionPlafonnementDeplafonnement(SoldeDebuterJournee solde,double ancienMontant,String nomOp) {
@@ -1027,7 +1039,8 @@ public class RestService  implements IService {
 		}	
     
     private void update(int idU,String operateur) {
-		
+    	Date  aujourdhui = new Date();
+    	SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
     	SoldeDebuterJournee solde =soldeDebuterJourneeRepository.findByDateAndIdUAndStatus(formater.format(aujourdhui),idU,1).get(0);
     	   switch (operateur) {
     	   case "caisse":
@@ -1300,6 +1313,8 @@ public class RestService  implements IService {
     }
     
     private void mettreTransactionAzero(int idU) {
+    	Date  aujourdhui = new Date();
+    	SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
     	SoldeDebuterJournee solde =soldeDebuterJourneeRepository.findByDateAndIdUAndStatus(formater.format(aujourdhui),idU,1).get(0);
     	Majournee jour = maJourneeRepository.findByDateAndIdUAndStatus(formater.format(aujourdhui),idU,1).get(0);
     	List<Transaction> listes = listeTansactionParCassier(idU);
@@ -1319,7 +1334,8 @@ public class RestService  implements IService {
 
 	@Override
 	public  List<Majournee> getMajourneesById(int userId) {
-		
+		Date  aujourdhui = new Date();
+    	SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
 		return maJourneeRepository.findByDateAndIdUAndStatus(formater.format(aujourdhui), userId,1);
 	}
 
@@ -1350,11 +1366,11 @@ public class RestService  implements IService {
 
 	@Override
 	public Majournee updateMajournee(int userId, SoldeDebuterJournee user) {
-		
-		
+		Date  aujourdhui = new Date();
+    	SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
+	
     	SoldeDebuterJournee solde =soldeDebuterJourneeRepository.findByIdAndDateAndStatus(userId,formater.format(aujourdhui),1);
-        
-		
+       
 		Majournee copie = maJourneeRepository.findByIdUAndDateAndStatus(solde.getIdU(),formater.format(aujourdhui),1);
     	copie.setCaisse(user.getCaisse());
     	copie.setOrange(user.getOrange());
