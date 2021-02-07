@@ -218,51 +218,47 @@ public class RestService  implements IService {
     		
     switch (user.getOperateur()) {
          case "Entree":
-			soldes.setCaisse(soldes.getCaisse()+user.getMontant());
+			soldes.setCaisse(soldes.getCaisse()+user.getMontant()+user.getFrais());
 			break;
          case "Plafonnement":
-			soldes.setCaisse(soldes.getCaisse()+user.getMontant());
-			actionPlafonnementDeplafonnement(soldes,user.getMontant(), user.getOperation());
+			soldes.setCaisse(soldes.getCaisse()+user.getMontant()+user.getFrais());
+			actionPlafonnementDeplafonnement(soldes,user.getMontant()+user.getFrais(), user.getOperation());
 			break;
-         case "Banque":
-				soldes.setCaisse(soldes.getCaisse()+user.getMontant());
-				soldes.setBanque(soldes.getBanque()-user.getMontant());
-				break;
  		  case "Orange":
- 				soldes.setCaisse(soldes.getCaisse()+user.getMontant());
- 				soldes.setOrange(soldes.getOrange()-user.getMontant());
+ 				soldes.setCaisse(soldes.getCaisse()+user.getMontant()+user.getFrais());
+ 				soldes.setOrange(soldes.getOrange()-user.getMontant()-user.getFrais());
  				break;
           case "Expresso":
-        	    soldes.setCaisse(soldes.getCaisse()+user.getMontant());
-				soldes.setExpresso(soldes.getExpresso()-user.getMontant());
+        	    soldes.setCaisse(soldes.getCaisse()+user.getMontant()+user.getFrais());
+				soldes.setExpresso(soldes.getExpresso()-user.getMontant()-user.getFrais());
  				break;
           case "Free":
-        	    soldes.setCaisse(soldes.getCaisse()+user.getMontant());
-				soldes.setFreeMoney(soldes.getFreeMoney()-user.getMontant());
+        	    soldes.setCaisse(soldes.getCaisse()+user.getMontant()+user.getFrais());
+				soldes.setFreeMoney(soldes.getFreeMoney()-user.getMontant()-user.getFrais());
  	             break;
           case "Wari":
-        	    soldes.setCaisse(soldes.getCaisse()+user.getMontant());
-				soldes.setWari(soldes.getWari()-user.getMontant());
+        	    soldes.setCaisse(soldes.getCaisse()+user.getMontant()+user.getFrais());
+				soldes.setWari(soldes.getWari()-user.getMontant()-user.getFrais());
  	             break;
           case "Wizall":
-        	    soldes.setCaisse(soldes.getCaisse()+user.getMontant());
-				soldes.setWizall(soldes.getWizall()-user.getMontant());
+        	    soldes.setCaisse(soldes.getCaisse()+user.getMontant()+user.getFrais());
+				soldes.setWizall(soldes.getWizall()-user.getMontant()-user.getFrais());
  	              break;
            case "Proximo":
-        	    soldes.setCaisse(soldes.getCaisse()+user.getMontant());
-				soldes.setProximo(soldes.getProximo()-user.getMontant());
+        	    soldes.setCaisse(soldes.getCaisse()+user.getMontant()+user.getFrais());
+				soldes.setProximo(soldes.getProximo()-user.getMontant()-user.getFrais());
  	              break;
            case "Xpress":
-        	    soldes.setCaisse(soldes.getCaisse()+user.getMontant());
-				soldes.setxpress(soldes.getxpress()-user.getMontant());
+        	    soldes.setCaisse(soldes.getCaisse()+user.getMontant()+user.getFrais());
+				soldes.setxpress(soldes.getxpress()-user.getMontant()-user.getFrais());
  	              break;
             case "Yup":
-            	soldes.setCaisse(soldes.getCaisse()+user.getMontant());
- 				soldes.setYup(soldes.getYup()-user.getMontant());
+            	soldes.setCaisse(soldes.getCaisse()+user.getMontant()+user.getFrais());
+ 				soldes.setYup(soldes.getYup()-user.getMontant()-user.getFrais());
  	               break;
             case "Wave":
-            	soldes.setCaisse(soldes.getCaisse()+user.getMontant());
- 				soldes.setYup(soldes.getYup()-user.getMontant());
+            	soldes.setCaisse(soldes.getCaisse()+user.getMontant()+user.getFrais());
+ 				soldes.setYup(soldes.getYup()-user.getMontant()-user.getFrais());
  	               break;
  			default:
  				break;
@@ -273,50 +269,47 @@ public class RestService  implements IService {
     		
     		 switch (user.getOperateur()) {
     		 case "Sortie":
-    				soldes.setCaisse(soldes.getCaisse()-user.getMontant());
+    			 soldes.setCaisse(soldes.getCaisse()-user.getMontant()+user.getCommission());
     				break;
     	    case "Deplafonnement":
-    				soldes.setCaisse(soldes.getCaisse()-user.getMontant());
+    	    	soldes.setCaisse(soldes.getCaisse()-user.getMontant()+user.getCommission());
     				actionPlafonnementDeplafonnement(soldes,-user.getMontant(), user.getOperation());
     				break;
   			case "Orange":
-  				soldes.setCaisse(soldes.getCaisse()-user.getMontant());
+  				soldes.setCaisse(soldes.getCaisse()-user.getMontant()+user.getCommission());
   				soldes.setOrange(soldes.getOrange()+user.getMontant());
   				break;
-  			case "Banque":
-  				soldes.setCaisse(soldes.getCaisse()-user.getMontant());
-  				soldes.setBanque(soldes.getBanque()+user.getMontant());
-  				break;
+  			
            case "Expresso":
-         	    soldes.setCaisse(soldes.getCaisse()-user.getMontant());
+        	   soldes.setCaisse(soldes.getCaisse()-user.getMontant()+user.getCommission());
  				soldes.setExpresso(soldes.getExpresso()+user.getMontant());
   				break;
            case "Free":
-         	    soldes.setCaisse(soldes.getCaisse()-user.getMontant());
+        	   soldes.setCaisse(soldes.getCaisse()-user.getMontant()+user.getCommission());
  				soldes.setFreeMoney(soldes.getFreeMoney()+user.getMontant());
   	             break;
            case "Wari":
-         	    soldes.setCaisse(soldes.getCaisse()-user.getMontant());
+        	   soldes.setCaisse(soldes.getCaisse()-user.getMontant()+user.getCommission());
  				soldes.setWari(soldes.getWari()+user.getMontant());
   	             break;
            case "Wizall":
-         	    soldes.setCaisse(soldes.getCaisse()-user.getMontant());
+        	   soldes.setCaisse(soldes.getCaisse()-user.getMontant()+user.getCommission());
  				soldes.setWizall(soldes.getWizall()+user.getMontant());
   	              break;
             case "Proximo":
-         	    soldes.setCaisse(soldes.getCaisse()-user.getMontant());
+            	soldes.setCaisse(soldes.getCaisse()-user.getMontant()+user.getCommission());
  				soldes.setProximo(soldes.getProximo()+user.getMontant());
   	              break;
             case "Xpress":
-         	    soldes.setCaisse(soldes.getCaisse()-user.getMontant());
+            	soldes.setCaisse(soldes.getCaisse()-user.getMontant()+user.getCommission());
  				soldes.setxpress(soldes.getxpress()+user.getMontant());
   	              break;
              case "Yup":
-             	soldes.setCaisse(soldes.getCaisse()-user.getMontant());
+            	 soldes.setCaisse(soldes.getCaisse()-user.getMontant()+user.getCommission());
   				soldes.setYup(soldes.getYup()+user.getMontant());
   	               break;
              case "Wave":
-             	soldes.setCaisse(soldes.getCaisse()-user.getMontant());
+            	 soldes.setCaisse(soldes.getCaisse()-user.getMontant()+user.getCommission());
   				soldes.setWave(soldes.getWave()+user.getMontant());
   	               break;
   			default:
@@ -335,49 +328,46 @@ public class RestService  implements IService {
     			transactionRepository
                         .findById(userId);
     	SoldeDebuterJournee soldes =soldeDebuterJourneeRepository.findByIdAndIdUAndStatus(idCreation, ad.getIdU(),1).get(0);
-    	double dec = admin.getMontant()-ad.getMontant();
+    	double dec = admin.getMontant()-admin.getCommission()-ad.getMontant()+ad.getCommission();
         if(ad.getSens().equals("encaissement")) {
     		
     		switch (ad.getOperateur()) {
     		 case "Entree":
-  				soldes.setCaisse(soldes.getCaisse()+ad.getMontant());
+  				soldes.setCaisse(soldes.getCaisse()+ad.getMontant()+ad.getFrais()-admin.getFrais());
   				break;
   	         case "Plafonnement":
-  				soldes.setCaisse(soldes.getCaisse()+ad.getMontant()-admin.getEncaissement());
+  				soldes.setCaisse(soldes.getCaisse()+ad.getMontant()-admin.getEncaissement()+ad.getFrais()-admin.getFrais());
 		  				switch (ad.getOperation()) {
 		  				case "Orange":
-		  					soldes.setOrange(soldes.getOrange()-ad.getMontant());
-		  					break;
-		  				case "Banque":
-		  					soldes.setBanque(soldes.getBanque()-ad.getMontant());
+		  					soldes.setOrange(soldes.getOrange()-ad.getMontant()-ad.getFrais()+admin.getFrais());
 		  					break;
 		  	           case "Expresso":
-		  	        	    soldes.setExpresso(soldes.getExpresso()-ad.getMontant());		  					
+		  	        	    soldes.setExpresso(soldes.getExpresso()-ad.getMontant()-ad.getFrais()+admin.getFrais());		  					
 		  					break;
 		  	           case "Free":
-		  	        	    soldes.setFreeMoney(soldes.getFreeMoney()-ad.getMontant());
+		  	        	    soldes.setFreeMoney(soldes.getFreeMoney()-ad.getMontant()-ad.getFrais()+admin.getFrais());
 		  				
 		  		             break;
 		  	           case "Wari":
-		  	        	    soldes.setWari(soldes.getWari()-ad.getMontant());
+		  	        	    soldes.setWari(soldes.getWari()-ad.getMontant()-ad.getFrais()+admin.getFrais());
 		  				
 		
 		  		             break;
 		  	           case "Wizall":
-		  	        	    soldes.setWizall(soldes.getWizall()-ad.getMontant());		  				
+		  	        	    soldes.setWizall(soldes.getWizall()-ad.getMontant()-ad.getFrais()+admin.getFrais());		  				
 		
 		  		              break;
 		  	            case "Proximo":
-		  	            	soldes.setProximo(soldes.getProximo()-ad.getMontant());
+		  	            	soldes.setProximo(soldes.getProximo()-ad.getMontant()-ad.getFrais()+admin.getFrais());
 		  		              break;
 		  	            case "Xpress":
-		  	            	soldes.setxpress(soldes.getxpress()-ad.getMontant());
+		  	            	soldes.setxpress(soldes.getxpress()-ad.getMontant()-ad.getFrais()+admin.getFrais());
 		  		              break;
 		  	             case "Yup":
-		  	            	 soldes.setYup(soldes.getYup()-ad.getMontant());
+		  	            	 soldes.setYup(soldes.getYup()-ad.getMontant()-ad.getFrais()+admin.getFrais());
 		  		               break;
 		  	             case "Wave":
-		  	            	 soldes.setWave(soldes.getWave()-ad.getMontant());
+		  	            	 soldes.setWave(soldes.getWave()-ad.getMontant()-ad.getFrais()+admin.getFrais());
 		  		               break;
 		  				default:
 		  					break;
@@ -385,50 +375,47 @@ public class RestService  implements IService {
 		  				calculeActualiser(soldes,admin.getMontant(),admin.getOperation());
   				break;
 			case "Orange":
-				soldes.setOrange(soldes.getOrange()-ad.getMontant());
-				soldes.setCaisse(soldes.getCaisse()-dec);
+				soldes.setOrange(soldes.getOrange()-ad.getMontant()-ad.getFrais()+admin.getFrais());
+				soldes.setCaisse(soldes.getCaisse()-dec+ad.getFrais()-admin.getFrais());
 				break;
-			case "Banque":
-				soldes.setBanque(soldes.getBanque()-ad.getMontant());
-				soldes.setCaisse(soldes.getCaisse()-dec);
-				break;
+			
            case "Expresso":
-        	    soldes.setExpresso(soldes.getExpresso()-ad.getMontant());
-				soldes.setCaisse(soldes.getCaisse()-dec);
+        	    soldes.setExpresso(soldes.getExpresso()-ad.getMontant()-ad.getFrais()+admin.getFrais());
+				soldes.setCaisse(soldes.getCaisse()-dec+ad.getFrais()-admin.getFrais());
 				
 				break;
            case "Free":
-        	    soldes.setFreeMoney(soldes.getFreeMoney()-ad.getMontant());
-				soldes.setCaisse(soldes.getCaisse()-dec);
+        	    soldes.setFreeMoney(soldes.getFreeMoney()-ad.getMontant()-ad.getFrais()+admin.getFrais());
+				soldes.setCaisse(soldes.getCaisse()-dec+ad.getFrais()-admin.getFrais());
 			
 	             break;
            case "Wari":
-        	    soldes.setWari(soldes.getWari()-ad.getMontant());
-				soldes.setCaisse(soldes.getCaisse()-dec);
+        	    soldes.setWari(soldes.getWari()-ad.getMontant()-ad.getFrais()+admin.getFrais());
+				soldes.setCaisse(soldes.getCaisse()-dec+ad.getFrais()-admin.getFrais());
 			
 
 	             break;
            case "Wizall":
-        	    soldes.setWizall(soldes.getWizall()-ad.getMontant());
-				soldes.setCaisse(soldes.getCaisse()-dec);
+        	    soldes.setWizall(soldes.getWizall()-ad.getMontant()-ad.getFrais()+admin.getFrais());
+				soldes.setCaisse(soldes.getCaisse()-dec+ad.getFrais()-admin.getFrais());
 			
 
 	              break;
             case "Proximo":
-            	soldes.setProximo(soldes.getProximo()-ad.getMontant());
-				soldes.setCaisse(soldes.getCaisse()-dec);
+            	soldes.setProximo(soldes.getProximo()-ad.getMontant()-ad.getFrais()+admin.getFrais());
+				soldes.setCaisse(soldes.getCaisse()-dec+ad.getFrais()-admin.getFrais());
 	              break;
             case "Xpress":
-            	soldes.setxpress(soldes.getxpress()-ad.getMontant());
-				soldes.setCaisse(soldes.getCaisse()-dec);
+            	soldes.setxpress(soldes.getxpress()-ad.getMontant()-ad.getFrais()+admin.getFrais());
+				soldes.setCaisse(soldes.getCaisse()-dec+ad.getFrais()-admin.getFrais());
 	              break;
              case "Yup":
-            	 soldes.setYup(soldes.getYup()-ad.getMontant());
- 				 soldes.setCaisse(soldes.getCaisse()-dec);
+            	 soldes.setYup(soldes.getYup()-ad.getMontant()-ad.getFrais()+admin.getFrais());
+ 				 soldes.setCaisse(soldes.getCaisse()-dec+ad.getFrais()-admin.getFrais());
 	               break;
              case "Wave":
-            	 soldes.setWave(soldes.getWave()-ad.getMontant());
- 				 soldes.setCaisse(soldes.getCaisse()-dec);
+            	 soldes.setWave(soldes.getWave()-ad.getMontant()-ad.getFrais()+admin.getFrais());
+ 				 soldes.setCaisse(soldes.getCaisse()-dec+ad.getFrais()-admin.getFrais());
 	               break;
 			default:
 				break;
@@ -437,17 +424,15 @@ public class RestService  implements IService {
     	}else if(ad.getSens().equals("decaissement")) {
     		switch (ad.getOperateur()) {
     		 case "Sortie":
- 				soldes.setCaisse(soldes.getCaisse()-ad.getMontant());
+ 				soldes.setCaisse(soldes.getCaisse()-ad.getMontant()-admin.getCommission()+ad.getCommission());
  				break;
  	         case "Deplafonnement":
- 				soldes.setCaisse(soldes.getCaisse()-ad.getMontant()+admin.getDecaissement());
+ 				soldes.setCaisse(soldes.getCaisse()-admin.getCommission()-ad.getMontant()+ad.getCommission()+admin.getDecaissement());
 		 				switch (ad.getOperation()) {
 		  				case "Orange":
 		  					soldes.setOrange(soldes.getOrange()+ad.getMontant());
 		  					break;
-		  				case "Banque":
-		  					soldes.setBanque(soldes.getBanque()+ad.getMontant());
-		  					break;
+		  				
 		  	           case "Expresso":
 		  	        	    soldes.setExpresso(soldes.getExpresso()+ad.getMontant());		  					
 		  					break;
@@ -479,10 +464,7 @@ public class RestService  implements IService {
 		  				}
 		 				calculeActualiser(soldes,-admin.getMontant(),admin.getOperation());
  				break;
- 	        case "Banque":
-				soldes.setBanque(soldes.getBanque()+ad.getMontant());
-				soldes.setCaisse(soldes.getCaisse()+dec);
-				break;
+ 	       
 			case "Orange":
 				soldes.setOrange(soldes.getOrange()+ad.getMontant());
 				soldes.setCaisse(soldes.getCaisse()+dec);
@@ -563,54 +545,51 @@ public class RestService  implements IService {
     	if(user.getSens().equals("decaissement")) {
             switch (user.getOperateur()) {
              case "Sortie":
-                 solde.setCaisse(solde.getCaisse()+user.getMontant());
+                 solde.setCaisse(solde.getCaisse()+user.getMontant()-user.getCommission());
  				break;
  	         case "Deplafonnement":
-                 solde.setCaisse(solde.getCaisse()+user.getMontant());
+                 solde.setCaisse(solde.getCaisse()+user.getMontant()-user.getCommission());
                  actionPlafonnementDeplafonnement(solde,user.getMontant(),user.getOperation());
  				break;
  				
  	          case "Orange":      
  	            	solde.setOrange(solde.getOrange()-user.getDecaissement());
- 	                solde.setCaisse(solde.getCaisse()+user.getDecaissement());
+ 	                solde.setCaisse(solde.getCaisse()+user.getDecaissement()-user.getCommission());
  					break;
- 	         case "Banque":      
-	            	solde.setBanque(solde.getBanque()-user.getDecaissement());
-	                solde.setCaisse(solde.getCaisse()+user.getDecaissement());
-					break;
+ 	       
  	            case "Expresso":
  	            	solde.setExpresso(solde.getExpresso()-user.getDecaissement());
- 	            	 solde.setCaisse(solde.getCaisse()+user.getDecaissement());
+ 	            	 solde.setCaisse(solde.getCaisse()+user.getDecaissement()-user.getCommission());
  					break;
  	            case "Free":
  	            	solde.setFreeMoney(solde.getFreeMoney()-user.getDecaissement());
- 	            	 solde.setCaisse(solde.getCaisse()+user.getDecaissement());
+ 	            	 solde.setCaisse(solde.getCaisse()+user.getDecaissement()-user.getCommission());
  		             break;
  	            case "Wari":
  	            	solde.setWari(solde.getWari()-user.getDecaissement());
-	            	 solde.setCaisse(solde.getCaisse()+user.getDecaissement());
+	            	 solde.setCaisse(solde.getCaisse()+user.getDecaissement()-user.getCommission());
 
  		             break;
  	            case "Wizall":
  	            	solde.setWizall(solde.getWizall()-user.getDecaissement());
-	            	 solde.setCaisse(solde.getCaisse()+user.getDecaissement());
+	            	 solde.setCaisse(solde.getCaisse()+user.getDecaissement()-user.getCommission());
 
  		              break;
  	            case "Proximo":
  	            	 solde.setProximo(solde.getProximo()-user.getDecaissement());
- 	            	 solde.setCaisse(solde.getCaisse()+user.getDecaissement());
+ 	            	 solde.setCaisse(solde.getCaisse()+user.getDecaissement()-user.getCommission());
  		              break;
  	            case "Xpress":
  	            	 solde.setxpress(solde.getxpress()-user.getDecaissement());
- 	            	 solde.setCaisse(solde.getCaisse()+user.getDecaissement());
+ 	            	 solde.setCaisse(solde.getCaisse()+user.getDecaissement()-user.getCommission());
  		              break;
  	            case "Yup":
  	            	  solde.setYup(solde.getYup()-user.getDecaissement());
-  	            	 solde.setCaisse(solde.getCaisse()+user.getDecaissement());
+  	            	 solde.setCaisse(solde.getCaisse()+user.getDecaissement()-user.getCommission());
  		               break;
  	            case "Wave":
  	            	  solde.setWave(solde.getWave()-user.getDecaissement());
-  	            	  solde.setCaisse(solde.getCaisse()+user.getDecaissement());
+  	            	  solde.setCaisse(solde.getCaisse()+user.getDecaissement()-user.getCommission());
  		               break;
  				default:
  					break;
@@ -618,54 +597,51 @@ public class RestService  implements IService {
     	}else if(user.getSens().equals("encaissement")){
     		 switch (user.getOperateur()) {
              case "Entree":
-                 solde.setCaisse(solde.getCaisse()-user.getMontant());
+                 solde.setCaisse(solde.getCaisse()-user.getMontant()-user.getFrais());
  				break;
  	         case "Plafonnement":
-                 solde.setCaisse(solde.getCaisse()-user.getMontant());
-                 actionPlafonnementDeplafonnement(solde,-user.getMontant(),user.getOperation());
+                 solde.setCaisse(solde.getCaisse()-user.getMontant()-user.getFrais());
+                 actionPlafonnementDeplafonnement(solde,-user.getMontant()-user.getFrais(),user.getOperation());
  				break;
  				
  	          case "Orange":      
- 	            	solde.setOrange(solde.getOrange()+user.getEncaissement());
- 	                solde.setCaisse(solde.getCaisse()-user.getEncaissement());
+ 	            	solde.setOrange(solde.getOrange()+user.getEncaissement()+user.getFrais());
+ 	                solde.setCaisse(solde.getCaisse()-user.getEncaissement()-user.getFrais());
  					break;
- 	         case "Banque":      
-	            	solde.setBanque(solde.getBanque()+user.getEncaissement());
-	                solde.setCaisse(solde.getCaisse()-user.getEncaissement());
-					break;
+ 	        
  	            case "Expresso":
- 	            	solde.setExpresso(solde.getExpresso()+user.getEncaissement());
- 	            	 solde.setCaisse(solde.getCaisse()-user.getEncaissement());
+ 	            	solde.setExpresso(solde.getExpresso()+user.getEncaissement()+user.getFrais());
+ 	            	 solde.setCaisse(solde.getCaisse()-user.getEncaissement()-user.getFrais());
  					break;
  	            case "Free":
- 	            	solde.setFreeMoney(solde.getFreeMoney()+user.getEncaissement());
- 	            	 solde.setCaisse(solde.getCaisse()-user.getEncaissement());
+ 	            	solde.setFreeMoney(solde.getFreeMoney()+user.getEncaissement()+user.getFrais());
+ 	            	 solde.setCaisse(solde.getCaisse()-user.getEncaissement()-user.getFrais());
  		             break;
  	            case "Wari":
- 	            	solde.setWari(solde.getWari()+user.getEncaissement());
-	            	 solde.setCaisse(solde.getCaisse()-user.getEncaissement());
+ 	            	solde.setWari(solde.getWari()+user.getEncaissement()+user.getFrais());
+	            	 solde.setCaisse(solde.getCaisse()-user.getEncaissement()-user.getFrais());
 
  		             break;
  	            case "Wizall":
- 	            	solde.setWizall(solde.getWizall()+user.getEncaissement());
-	            	 solde.setCaisse(solde.getCaisse()-user.getEncaissement());
+ 	            	solde.setWizall(solde.getWizall()+user.getEncaissement()+user.getFrais());
+	            	 solde.setCaisse(solde.getCaisse()-user.getEncaissement()-user.getFrais());
 
  		              break;
  	            case "Proximo":
- 	            	 solde.setProximo(solde.getProximo()+user.getEncaissement());
- 	            	 solde.setCaisse(solde.getCaisse()-user.getEncaissement());
+ 	            	 solde.setProximo(solde.getProximo()+user.getEncaissement()+user.getFrais());
+ 	            	 solde.setCaisse(solde.getCaisse()-user.getEncaissement()-user.getFrais());
  		              break;
  	            case "Xpress":
- 	            	 solde.setxpress(solde.getxpress()+user.getEncaissement());
- 	            	 solde.setCaisse(solde.getCaisse()-user.getEncaissement());
+ 	            	 solde.setxpress(solde.getxpress()+user.getEncaissement()+user.getFrais());
+ 	            	 solde.setCaisse(solde.getCaisse()-user.getEncaissement()-user.getFrais());
  		              break;
  	            case "Yup":
- 	            	  solde.setYup(solde.getYup()+user.getEncaissement());
-  	            	 solde.setCaisse(solde.getCaisse()-user.getEncaissement());
+ 	            	  solde.setYup(solde.getYup()+user.getEncaissement()+user.getFrais());
+  	            	 solde.setCaisse(solde.getCaisse()-user.getEncaissement()-user.getFrais());
  		               break;
  	            case "Wave":
- 	            	  solde.setWave(solde.getWave()+user.getEncaissement());
-  	            	  solde.setCaisse(solde.getCaisse()-user.getEncaissement());
+ 	            	  solde.setWave(solde.getWave()+user.getEncaissement()+user.getFrais());
+  	            	  solde.setCaisse(solde.getCaisse()-user.getEncaissement()-user.getFrais());
  		               break;
  				default:
  					break;
@@ -829,15 +805,18 @@ public class RestService  implements IService {
     	
     	return transactionRepository.findByIdUAndDateBetween(user.getId(),user.getDate(),user.getDate1());
     }
-
+   public List<Transaction>listeRehercherParSens( int id_caissier,String sens){
+    	
+    	return transactionRepository.findBySensAndDateAndIdUAndStatus(sens,formater.format(aujourdhui), id_caissier,1);
+    }
     public List<Transaction>listeRehercherParOperateur( int id_caissier,String operation){
     	
     	return transactionRepository.findByOperateurAndDateAndIdUAndStatus(operation,formater.format(aujourdhui), id_caissier,1);
     }
    
-    public List<Transaction>listeRehercherParOperation( int id_caissier, String operation){
+    public List<Transaction>listeRehercherParSensOperateur(String operateur,int id_caissier, String sens){
     	
-    	return transactionRepository.findByDateAndIdUAndSensAndStatus(formater.format(aujourdhui), id_caissier,operation,1);
+    	return transactionRepository.findByOperateurAndDateAndIdUAndSensAndStatus(operateur,formater.format(aujourdhui), id_caissier,sens,1);
     }
     public void actionPlafonnementDeplafonnement(SoldeDebuterJournee solde,double ancienMontant,String nomOp) {
     	  switch (nomOp) {
@@ -846,9 +825,7 @@ public class RestService  implements IService {
 	            	solde.setOrange(solde.getOrange()-ancienMontant);
 					break;
 					
-	          case "Banque":      
-	            	solde.setBanque(solde.getBanque()-ancienMontant);
-					break;
+	         
 	            case "Expresso":
 	            	solde.setExpresso(solde.getExpresso()-ancienMontant);
 					break;
@@ -894,10 +871,7 @@ public class RestService  implements IService {
 					            	solde.setOrange(solde.getOrange()+ancienMontant);
 									break;
 									
-					          case "Banque": 
-									solde.setCaisse(solde.getCaisse()-ancienMontant);
-					            	solde.setBanque(solde.getBanque()+ancienMontant);
-									break;
+					          
 					            case "Expresso":
 									solde.setCaisse(solde.getCaisse()-ancienMontant);
 					            	solde.setExpresso(solde.getExpresso()+ancienMontant);
@@ -946,10 +920,7 @@ public class RestService  implements IService {
 				            	solde.setOrange(solde.getOrange()-ancienMontant);
 								break;
 								
-				          case "Banque":      
-								solde.setCaisse(solde.getCaisse()-ancienMontant);
-				            	solde.setBanque(solde.getBanque()-ancienMontant);
-								break;
+				         
 				            case "Expresso":
 								solde.setCaisse(solde.getCaisse()-ancienMontant);
 				            	solde.setExpresso(solde.getExpresso()-ancienMontant);
@@ -992,9 +963,7 @@ public class RestService  implements IService {
 	            	solde.setOrange(solde.getOrange()+ancienMontant);
 					break;
 					
-	          case "Banque":      
-	            	solde.setBanque(solde.getBanque()+ancienMontant);
-					break;
+	         
 	            case "Expresso":
 	            	solde.setExpresso(solde.getExpresso()+ancienMontant);
 					break;
@@ -1270,9 +1239,7 @@ public class RestService  implements IService {
          if((solde_ancien.getOrange()-solde_nouveau.getOrange()) != 0) {
         	 update(solde_ancien.getIdU(),"Sortie");
          }
-         if((solde_ancien.getBanque()-solde_nouveau.getBanque()) != 0) {
-        	 update(solde_ancien.getIdU(),"Banque");
-         }
+        
          if((solde_ancien.getExpresso()-solde_nouveau.getExpresso()) != 0) {
         	 update(solde_ancien.getIdU(),"Expresso");
          }
@@ -1374,8 +1341,137 @@ public class RestService  implements IService {
     	copie.setStatus(user.getStatus());
 		return updateMajournee( copie.getId(), copie);
 	}
-    
-	
+
+	@Override
+	public SoldeDebuterJournee getTotalEncaissementOperateur(int userId) {
+		 List<Transaction>listes = transactionRepository.findBySensAndDateAndIdUAndStatus("encaissement",formater.format(aujourdhui),userId,1);
+		 SoldeDebuterJournee solde = new SoldeDebuterJournee();
+		 for (Transaction transaction : listes) {
+				 switch (transaction.getOperateur()) {
+		         case "Orange":      
+		           	solde.setOrange(solde.getOrange()+transaction.getEncaissement());
+						break;
+						
+		       
+		           case "Expresso":
+		           	solde.setExpresso(solde.getExpresso()+transaction.getEncaissement());
+						break;
+		           case "Free":
+		           	solde.setFreeMoney(solde.getFreeMoney()+transaction.getEncaissement());
+			             break;
+		           case "Wari":
+		           	solde.setWari(solde.getWari()+transaction.getEncaissement());
+			             break;
+		           case "Wizall":
+		           	solde.setWizall(solde.getWizall()+transaction.getEncaissement());
+		           	
+			              break;
+		           case "Proximo":
+		           	 solde.setProximo(solde.getProximo()+transaction.getEncaissement());
+			              break;
+		           case "Xpress":
+		           	 solde.setxpress(solde.getxpress()+transaction.getEncaissement());
+			              break;
+		           case "Yup":
+		           	  solde.setYup(solde.getYup()+transaction.getEncaissement());
+			               break;
+		           case "Wave":
+		           	  solde.setWave(solde.getWave()+transaction.getEncaissement());
+			               break;
+					default:
+						break;
+					}
+			 } 
+		return solde;
+	}
+
+	@Override
+	public SoldeDebuterJournee getTotalDecaissementOperateur(int userId) {
+		 List<Transaction>listes = transactionRepository.findBySensAndDateAndIdUAndStatus("decaissement",formater.format(aujourdhui),userId,1);
+		 SoldeDebuterJournee solde = new SoldeDebuterJournee();
+		 for (Transaction transaction : listes) {
+				 switch (transaction.getOperateur()) {
+			       	
+		         case "Orange":      
+		           	solde.setOrange(solde.getOrange()+transaction.getDecaissement());
+						break;
+						
+		        
+		           case "Expresso":
+		           	solde.setExpresso(solde.getExpresso()+transaction.getDecaissement());
+						break;
+		           case "Free":
+		           	solde.setFreeMoney(solde.getFreeMoney()+transaction.getDecaissement());
+			             break;
+		           case "Wari":
+		           	solde.setWari(solde.getWari()+transaction.getDecaissement());
+			             break;
+		           case "Wizall":
+		           	solde.setWizall(solde.getWizall()+transaction.getDecaissement());
+		           	
+			              break;
+		           case "Proximo":
+		           	 solde.setProximo(solde.getProximo()+transaction.getDecaissement());
+			              break;
+		           case "Xpress":
+		           	 solde.setxpress(solde.getxpress()+transaction.getDecaissement());
+			              break;
+		           case "Yup":
+		           	  solde.setYup(solde.getYup()+transaction.getDecaissement());
+			               break;
+		           case "Wave":
+		           	  solde.setWave(solde.getWave()+transaction.getDecaissement());
+			               break;
+					default:
+						break;
+					}
+			 } 
+		return solde;
+	}
+
+	@Override
+	public SoldeDebuterJournee getTotalFraisOperateur(int userId) {
+		 List<Transaction>listes = transactionRepository.findByIdUAndDateAndStatus(userId,formater.format(aujourdhui),1);
+		 SoldeDebuterJournee solde = new SoldeDebuterJournee();
+		 for (Transaction transaction : listes) {
+				 switch (transaction.getOperateur()) {
+			       	
+		         case "Orange":      
+		           	solde.setOrange(solde.getOrange()+transaction.getFrais());
+						break;
+						
+		         
+		           case "Expresso":
+		           	solde.setExpresso(solde.getExpresso()+transaction.getFrais());
+						break;
+		           case "Free":
+		           	solde.setFreeMoney(solde.getFreeMoney()+transaction.getFrais());
+			             break;
+		           case "Wari":
+		           	solde.setWari(solde.getWari()+transaction.getFrais());
+			             break;
+		           case "Wizall":
+		           	solde.setWizall(solde.getWizall()+transaction.getFrais());
+		           	
+			              break;
+		           case "Proximo":
+		           	 solde.setProximo(solde.getProximo()+transaction.getFrais());
+			              break;
+		           case "Xpress":
+		           	 solde.setxpress(solde.getxpress()+transaction.getFrais());
+			              break;
+		           case "Yup":
+		           	  solde.setYup(solde.getYup()+transaction.getFrais());
+			               break;
+		           case "Wave":
+		           	  solde.setWave(solde.getWave()+transaction.getFrais());
+			               break;
+					default:
+						break;
+					}
+			 } 
+		return solde;
+	}
 	
 
 }

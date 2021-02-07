@@ -29,6 +29,9 @@ public interface IService {
     public SoldeDebuterJournee createSoldeDebuterJournee( SoldeDebuterJournee user) ;
     public SoldeDebuterJournee updateSoldeDebuterJournee( int userId,  SoldeDebuterJournee ad);
     public Map<String, Boolean> deleteSoldeDebuterJournee( int userId) ;
+    public SoldeDebuterJournee getTotalEncaissementOperateur( int userId) ;
+    public SoldeDebuterJournee getTotalDecaissementOperateur( int userId) ;
+    public SoldeDebuterJournee getTotalFraisOperateur( int userId) ;
 
     //MAJOURNEE
     public List<Majournee> getMajourneesById( int userId);
@@ -53,7 +56,7 @@ public interface IService {
     public List<Transaction>listeTansactionParCassier( int id_caissier);
     public List<Transaction>listeHistorique(history user);
     public List<Transaction>listeRehercherParOperateur( int id_caissier, String operation);
-    public List<Transaction>listeRehercherParOperation(int id_caissier,String operation);
+    public List<Transaction>listeRehercherParSensOperateur(String operateur,int id_caissier, String sens);
     public void actionPlafonnementDeplafonnement(SoldeDebuterJournee solde,double ancienMontant,String nomOp) ;
     public void calculeActualiser(SoldeDebuterJournee solde,double ancienMontant,String nomOp) ;
 		

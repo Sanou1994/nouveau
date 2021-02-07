@@ -66,7 +66,18 @@ public class RestControleur {
         return service.getSoldeDebuterJournees(userId);
     }
 
-
+    @GetMapping("/soldeDebuterJournees/totalEncaissement/caissier/{idU}")
+    public SoldeDebuterJournee gettotalEncaissement(@PathVariable(value = "idU") int userId) {
+        return service.getTotalEncaissementOperateur(userId);
+    }
+    @GetMapping("/soldeDebuterJournees/totalDecaissement/caissier/{idU}")
+    public SoldeDebuterJournee gettotaldecaissement(@PathVariable(value = "idU") int userId) {
+        return service.getTotalDecaissementOperateur(userId);
+    }
+    @GetMapping("/soldeDebuterJournees/totalFrais/caissier/{idU}")
+    public SoldeDebuterJournee gettotalfrais(@PathVariable(value = "idU") int userId) {
+        return service.getTotalFraisOperateur(userId);
+    }
     @GetMapping("/soldeDebuterJournees")
     public List<SoldeDebuterJournee>getAllSoldeDebuterJournees() {
         return service.getAllSoldeDebuterJournees();
@@ -176,14 +187,18 @@ public class RestControleur {
     public List<Transaction>listeHistorique( @RequestBody history user){
     	return service.listeHistorique(user);
     }
+    @GetMapping("/transactions/caissier/{id}/recherche/sens/{sens}")
+    public List<Transaction>listeRehercherParSens(@PathVariable(value = "id") int id_caissier,@PathVariable("sens") String sens){
+    	return service.listeRehercherParSens(id_caissier, sens);
+    }
     @GetMapping("/transactions/caissier/{id}/recherche/operateur/{operateur}")
     public List<Transaction>listeRehercherParOperateur(@PathVariable(value = "id") int id_caissier,@PathVariable("operateur") String operation){
     	return service.listeRehercherParOperateur(id_caissier, operation);
     }
-    @GetMapping("/transactions/caissier/{id}/recherche/operation/{operation}")
-    public List<Transaction>listeRehercherParOperation(@PathVariable(value = "id") int id_caissier,@PathVariable("operation") String operation){
+    @GetMapping("/transactions/caissier/{id}/recherche/operateur/{operateur}/sens/{sens}")
+    public List<Transaction>listeRehercherParOperation(@PathVariable(value = "id") int id_caissier,@PathVariable("operateur") String operateur,@PathVariable("sens") String sens){
     	
-    	return service.listeRehercherParOperation(id_caissier, operation);
+    	return service.listeRehercherParSensOperateur(operateur,id_caissier,sens);
     }
     public void actionPlafonnementDeplafonnement(SoldeDebuterJournee solde,double ancienMontant,String nomOp) {
     	service.actionPlafonnementDeplafonnement(solde, ancienMontant, nomOp); 
