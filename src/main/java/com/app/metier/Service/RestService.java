@@ -26,7 +26,6 @@ import com.app.metier.entities.history;
 
 @Service
 public class RestService  implements IService {
-    private volatile int idCreation = 0;
 	private  Date  aujourdhui = new Date();
 	private SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
     @Autowired
@@ -105,7 +104,7 @@ public class RestService  implements IService {
     }
    
     public List<SoldeDebuterJournee>getSoldeDebuterJournees( int userId) {
-        return soldeDebuterJourneeRepository.findByIdAndIdUAndStatus(idCreation, userId,1);
+        return soldeDebuterJourneeRepository.findByIdUAndDateAndStatus(userId,formater.format(aujourdhui) ,1);
     }
 
 
@@ -139,7 +138,7 @@ public class RestService  implements IService {
     	copie.setDate(user.getDate());
     	copie.setStatus(user.getStatus());
     	maJourneeRepository.save(copie);
-    	idCreation = soldeDebuterJourneeRepository.save(user).getId();
+    	soldeDebuterJourneeRepository.save(user).getId();
         return soldeDebuterJourneeRepository.save(user);
     }
    
@@ -213,7 +212,7 @@ public class RestService  implements IService {
     public void createTransactions( Transaction user) {
     	int id_user= user.getIdU();
     	
-    	SoldeDebuterJournee soldes =soldeDebuterJourneeRepository.findByIdAndIdUAndStatus(idCreation, id_user,1).get(0);
+    	SoldeDebuterJournee soldes =soldeDebuterJourneeRepository.findByIdUAndDateAndStatus(id_user,formater.format(aujourdhui) ,1).get(0);
     	if(user.getSens().equals("encaissement")) {
     		
     switch (user.getOperateur()) {
@@ -327,7 +326,7 @@ public class RestService  implements IService {
     	Transaction admin =
     			transactionRepository
                         .findById(userId);
-    	SoldeDebuterJournee soldes =soldeDebuterJourneeRepository.findByIdAndIdUAndStatus(idCreation, ad.getIdU(),1).get(0);
+    	SoldeDebuterJournee soldes =soldeDebuterJourneeRepository.findByIdUAndDateAndStatus(userId,formater.format(aujourdhui) ,1).get(0);
     	double dec = admin.getMontant()-admin.getCommission()-ad.getMontant()+ad.getCommission();
         if(ad.getSens().equals("encaissement")) {
     		
@@ -541,7 +540,7 @@ public class RestService  implements IService {
     	Transaction user =
     			transactionRepository
                         .findById(userId);
-		SoldeDebuterJournee solde =soldeDebuterJourneeRepository.findByIdAndIdUAndStatus(idCreation, user.getIdU(),1).get(0);
+		SoldeDebuterJournee solde =soldeDebuterJourneeRepository.findByIdUAndDateAndStatus(userId,formater.format(aujourdhui) ,1).get(0);
     	if(user.getSens().equals("decaissement")) {
             switch (user.getOperateur()) {
              case "Sortie":
@@ -668,7 +667,7 @@ public class RestService  implements IService {
    
     public double cloturer(  int id, double con){	
     	
-    	SoldeDebuterJournee solde =soldeDebuterJourneeRepository.findByIdAndIdUAndStatus(idCreation,id,1).get(0);
+    	SoldeDebuterJournee solde =soldeDebuterJourneeRepository.findByIdUAndDateAndStatus(id,formater.format(aujourdhui) ,1).get(0);
     	Majournee solde1 =maJourneeRepository.findByDateAndIdUAndStatus(formater.format(aujourdhui),id,1).get(0);
         solde.setCloturer(con);
         solde1.setCloturer(con);
@@ -997,7 +996,7 @@ public class RestService  implements IService {
     
     private void update(int idU,String operateur) {
 		
-    	SoldeDebuterJournee solde =soldeDebuterJourneeRepository.findByIdAndIdUAndStatus(idCreation,idU,1).get(0);
+    	SoldeDebuterJournee solde =soldeDebuterJourneeRepository.findByIdUAndDateAndStatus(idU,formater.format(aujourdhui) ,1).get(0);
     	   switch (operateur) {
     	   case "caisse":
 				  solde.setCaisse(solde.getCaisse()+totalEncaissement(idU)-totalDecaissement(idU));
@@ -1267,7 +1266,7 @@ public class RestService  implements IService {
     }
     
     private void mettreTransactionAzero(int idU) {
-    	SoldeDebuterJournee solde =soldeDebuterJourneeRepository.findByIdAndIdUAndStatus(idCreation,idU,1).get(0);
+    	SoldeDebuterJournee solde =soldeDebuterJourneeRepository.findByIdUAndDateAndStatus(idU,formater.format(aujourdhui) ,1).get(0);
     	Majournee jour = maJourneeRepository.findByDateAndIdUAndStatus(formater.format(aujourdhui),idU,1).get(0);
     	List<Transaction> listes = listeTansactionParCassier(idU);
     	
@@ -1319,7 +1318,7 @@ public class RestService  implements IService {
 	public Majournee updateMajournee(int userId, SoldeDebuterJournee user) {
 		
 		
-    	SoldeDebuterJournee solde =soldeDebuterJourneeRepository.findByIdAndDateAndStatus(userId,formater.format(aujourdhui),1);
+    	SoldeDebuterJournee solde =soldeDebuterJourneeRepository.findByIdUAndDateAndStatus(userId,formater.format(aujourdhui) ,1).get(0);
         
 		
 		Majournee copie = maJourneeRepository.findByIdUAndDateAndStatus(solde.getIdU(),formater.format(aujourdhui),1);
